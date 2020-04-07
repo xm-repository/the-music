@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf.dao.ILikeDao">
+    <!--根据userId查询ILike-->
+    <select id="getILikeByUserId" resultType="com.nf.entity.ILike">
+        select id,user_id
+        from ilike_info
+        where user_id = #{param1}
+    </select>
+    <!--根据sheetId删除其他用户喜欢该歌单的记录-->
+    <delete id="deleteILikeSongSheetBySheetId">
+        delete from sheet_ilike_relation
+        where song_sheet_id =#{sheetId}
+    </delete>
+
+</mapper>

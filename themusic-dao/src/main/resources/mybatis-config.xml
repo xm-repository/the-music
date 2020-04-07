@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
+<configuration>
+    <!--打印日志-->
+    <settings>
+<!--        <setting name="logImpl" value="STDOUT_LOGGING"/>-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <!--分页-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="supportMethodsArguments" value="true"/>
+            <property name="reasonable" value="true"/>
+        </plugin>
+    </plugins>
+
+    <mappers>
+        <mapper resource="mappers/singer-mapper.xml"/>
+        <mapper resource="mappers/song-mapper.xml"/>
+        <mapper resource="mappers/comment-mapper.xml"/>
+        <mapper resource="mappers/mv-mapper.xml"/>
+        <mapper resource="mappers/login-mapper.xml"/>
+        <mapper resource="mappers/user-mapper.xml"/>
+        <mapper resource="mappers/ilike-mapper.xml"/>
+        <mapper resource="mappers/songsheet-mapper.xml"/>
+        <mapper resource="mappers/album-mapper.xml"/>
+        <mapper resource="mappers/ccomment-mapper.xml"/>
+    </mappers>
+</configuration>

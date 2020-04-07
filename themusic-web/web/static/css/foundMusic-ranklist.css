@@ -1,0 +1,36 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+#Rank_list_container {
+    width: 1100px;
+    margin: auto;
+}
+/*播放按钮*/
+.Rank_list_play{
+    float:left;
+}
+
+/*!*添加到歌单按钮*!*/
+/*.Rank_list_addTOMySongSheety{*/
+/*    float:left;*/
+/*    margin-left:10px;*/
+/*}*/
+/*下载按钮*/
+.Rank_list_downLoad{
+    float:left;
+    margin-left:10px;
+}
+
+.Rank_list div>a{
+    font-size: 20px;
+}
+
+/*播放和下载图标*/
+a .icon-icon-test{
+    font-size:35px;
+}
+a .icon-download{
+    font-size:30px ;
+}

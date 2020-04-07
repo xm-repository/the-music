@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf.dao.UserDao">
+
+    <!--查询用户信息-->
+    <select id="getUserByUserId" resultType="com.nf.entity.User">
+        select user_id, user_name, user_sex, user_phone, user_picture
+        from user
+        where user_id=#{userId}
+    </select>
+    <!--添加一个用户-->
+    <select id="addUser">
+        insert into user(user_phone,user_picture)
+        values(#{userPhone},#{userPicture})
+    </select>
+    <!--查询最后一个用户id-->
+    <select id="selectLastUserId" resultType="int">
+        select  user_id
+        from user
+        order by user_id desc limit 0,1
+    </select>
+    <!--查询所有用户数量-->
+    <select id="getAllUserCount" resultType="int">
+        select COUNT(*)
+        from user
+    </select>
+
+    <!--修改歌曲信息-->
+    <update id="updateUser">
+        update user
+        set user_name=#{userName},user_sex=#{userSex},user_Picture=#{userPicture}
+        where user_id =#{userId}
+    </update>
+    <!--分页查询所有用户-->
+<!--    <resultMap id="userLoginResultMap" type="com.nf.entity.User">-->
+<!--        <id column="login_name" property="login.loginName"></id>-->
+<!--        <id column="password" property="login.password"></id>-->
+<!--        <id column="login_type" property="login.loginType"></id>-->
+<!--    </resultMap>-->
+    <select id="getAllUsers" resultType="com.nf.entity.User">
+        select A.user_id,user_name,user_sex,user_phone,user_picture,login_name,password,login_type
+        from user A inner join login B on A.user_id = B.user_id
+        order by A.user_id
+    </select>
+
+
+</mapper>

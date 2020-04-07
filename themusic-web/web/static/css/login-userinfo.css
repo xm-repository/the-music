@@ -1,0 +1,34 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+#userinfo img{
+    width:40px;
+    height:40px;
+    border-radius:20px;
+}
+#userinfo p{
+    display:inline;
+    position:absolute;
+    left:1130px;
+    top:20px;
+}
+#userinfo:hover{
+    cursor:pointer;
+}
+/*下拉列表*/
+#slide_down_list{
+    width:140px;
+    list-style-type:none;
+    text-align: center;
+    position: absolute;
+    left:1083px;
+    top:50px;
+    background-color:lavender;
+    display: none;
+    z-index:1;
+}
+#slide_down_list li{
+    height:30px;
+
+}

@@ -1,0 +1,39 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+/*头部按钮*/
+#my_music-ilike-single_song-buttons{
+    height:40px;
+    margin-left:38px;
+}
+#my_music-ilike-single_song-buttons li{
+    float:left;
+    list-style-type: none;
+    margin-left:10px;
+}
+#my_music-ilike-single_song-buttons button{
+    width:110px;
+}
+/*头部按钮*/
+/*列表控制区*/
+.ilike-single_song-control div{
+    float:left;
+    font-size:20px;
+}
+/*添加到我的歌单按钮*/
+.ilike-single_song-control_addTOMySongSheety{
+    margin-left:10px;
+}
+/*下载按钮*/
+.ilike-single_song-control_downLoad{
+    margin-left:10px;
+}
+
+/*播放和下载图标*/
+a .icon-icon-test{
+    font-size:35px;
+}
+a .icon-download{
+    font-size:30px ;
+}

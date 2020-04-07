@@ -1,0 +1,81 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+#search_singer_container{
+    width:1200px;
+    margin-left:45px;
+    margin-top:20px;
+}
+/*搜索结果*/
+.search_singer_list{
+    width:1200px;
+    height:60px;
+    list-style-type:none;
+}
+.search_singer_list li{
+    float:left;
+}
+/*第一列*/
+.search_singer_list_first_column{
+    width:400px;
+    height:60px;
+    position:relative;
+    margin-top:5px;
+}
+/*第二列*/
+.search_singer_list_second_column{
+    width:200px;
+    height:60px;
+    position:relative;
+    margin-top:5px;
+}
+/*第三列*/
+.search_singer_list_third_column{
+    width:300px;
+    height:60px;
+    position:relative;
+    margin-top:5px;
+}
+/*第四列*/
+.search_singer_list_fourth_column{
+    width:300px;
+    height:60px;
+    position:relative;
+    margin-top:5px;
+}
+/*歌手头像*/
+.search_singer_list_headpicture{
+    width:50px;
+    height:50px;
+    border-radius:25px;
+    margin-top:5px;
+    margin-left:10px;
+}
+.search_singer_list_headpicture:hover{
+    cursor:pointer;
+}
+/*歌手名字*/
+.singer_name{
+    position:absolute;
+    left:80px;
+    top:20px;
+}
+/*性别*/
+.singer_sex{
+    position:absolute;
+    left:10px;
+    top:20px;
+}
+/*专辑*/
+.singer_album_nums{
+    position:absolute;
+    left:10px;
+    top:20px;
+}
+/*粉丝*/
+.singer_fans_nums{
+    position:absolute;
+    left:10px;
+    top:20px;
+}

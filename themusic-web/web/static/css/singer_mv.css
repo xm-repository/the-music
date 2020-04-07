@@ -1,0 +1,42 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+#mv_container{
+    width:1200px;
+    margin-left: 30px;
+}
+
+#mv_list li{
+    width:280px;
+    height:270px;
+    list-style-type:none;
+    float:left;
+    margin-top:10px;
+}
+.right_li{
+    margin-left:20px;
+}
+#mv_list div{
+    width:280px;
+    height:180px;
+    overflow:hidden;
+    position:relative;
+}
+.mv_img_container:hover{
+    cursor:pointer;
+}
+.mv_img{
+    width:280px;
+    height:180px;
+    position:absolute;
+}
+
+.mv_play-img{
+    position:absolute;
+    left:105px !important;
+    top:45px;
+    font-size:70px;
+    color:whitesmoke;
+    display:none;
+}

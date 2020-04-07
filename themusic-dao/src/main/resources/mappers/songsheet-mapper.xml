@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf.dao.SongSheetDao">
+    <!--根据ilikeId查询我喜欢的歌单数量-->
+    <select id="getSongSheetCountByILikeId" resultType="int">
+        select COUNT(*)
+        from song_sheet A inner join user B on A.user_id = B.user_id
+        inner join sheet_ilike_relation C on A.sheet_id = C.song_sheet_id
+        where C.ilike_id = #{ilikeId}
+    </select>
+
+    <!--根据ilikeId查询我喜欢的歌单信息-->
+    <select id="getSongSheetByILikeId" resultMap="songSheetUserResultMap">
+        select A.sheet_id, sheet_name, A.user_id, language, style, mood, C.ilike_id,user_name
+        from song_sheet A inner join user B on A.user_id = B.user_id
+        inner join sheet_ilike_relation C on A.sheet_id = C.song_sheet_id
+        where C.ilike_id = #{param3}
+    </select>
+
+    <resultMap id="songSheetUserResultMap" type="com.nf.entity.SongSheet">
+        <result column="user_name" property="user.userName"/>
+    </resultMap>
+
+    <!--通过歌单id查询歌单中歌曲数量-->
+    <select id="getSongNumsBySheetId" resultType="int">
+        select count(*)
+        from sheet_song_relation
+        where song_sheet_id = #{sheetId}
+    </select>
+
+    <!--通过userId查询歌单数量-->
+    <select id="getSongSheetCountByUserId" resultType="int">
+        select COUNT(*)
+        from song_sheet
+        where user_id = #{userId}
+        order by sheet_id
+    </select>
+
+    <!--通过userId查询歌单-->
+    <select id="getSongSheetByUserId" resultType="com.nf.entity.SongSheet">
+        select sheet_id, sheet_name, user_id, language, style, mood
+        from song_sheet
+        where user_id = #{param3}
+        order by sheet_id
+    </select>
+
+    <!--创建一个歌单-->
+    <insert id="addSongSheet">
+        insert into song_sheet(sheet_name,user_id)
+        values(#{sheetName},#{userId})
+    </insert>
+
+    <!--根据sheetId删除一个歌单-->
+    <delete id="deleteSheetBySheetId">
+        delete from song_sheet
+        where sheet_id =#{sheetId}
+    </delete>
+
+    <!--根据sheetId删除歌单表中的歌曲-->
+    <delete id="deleteSheetSongsBySheetId">
+        delete from sheet_song_relation
+        where song_sheet_id =#{sheetId}
+    </delete>
+
+    <!--取消收藏一个歌单-->
+    <delete id="cancelLikeSongSheet">
+        delete from sheet_ilike_relation
+        where song_sheet_id =#{param1} and ilike_id=#{param2}
+    </delete>
+
+    <!--添加歌曲到歌单-->
+    <insert id="likeSong">
+        insert into sheet_song_relation(song_id, song_sheet_id)
+        values
+        <foreach collection="param1" item="songId" separator=",">
+            (#{songId},#{param2})
+        </foreach>
+    </insert>
+
+    <!--取消收藏歌曲-->
+    <delete id="cancelLikeSong">
+        delete from sheet_song_relation
+        where song_id in
+        <foreach collection="param1" item="songId" open="(" close=")" separator=",">
+            #{songId}
+        </foreach>
+        and song_sheet_id =#{param2}
+    </delete>
+
+    <!--判断歌单中是否已经存在歌曲-->
+    <select id="isLikeSong" resultType="int">
+        select COUNT(*)
+        from sheet_song_relation
+        where song_id=#{param1} and song_sheet_id = #{param2}
+    </select>
+
+    <!--根据sheetId查询歌单信息-->
+    <select id="getSongSheetBySheetId" resultMap="songSheetUserResultMap">
+        select A.sheet_id, sheet_name, A.user_id, language, style, mood,user_name
+        from song_sheet A inner join user B on A.user_id = B.user_id
+        where A.sheet_id = #{param1}
+    </select>
+
+    <!--根据sheetId查询歌单中歌曲数量-->
+    <select id="getSheetSongCountBySheetId" resultType="int">
+        select COUNT(*)
+        from sheet_song_relation
+        where song_sheet_id=#{sheetId}
+    </select>
+</mapper>

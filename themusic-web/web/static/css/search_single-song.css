@@ -1,0 +1,119 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+#search_single-song_list_container{
+    width:1300px;
+    margin-left:57px;
+    margin-top:20px;
+}
+#search_single-song_list_content{
+    width:1200px;
+    margin:auto;
+    margin-top:50px;
+}
+/*歌手列表标题栏*/
+#single-song_list_title{
+    width:1200px;
+    height:50px;
+    list-style-type: none;
+    color:#999999;
+}
+/*第一列*/
+.single-song_list_title_first_column{
+    width:300px;
+    height:40px;
+    float:left;
+    margin-top:5px;
+    padding-left:5px;
+}
+/*第二列*/
+.single-song_list_title_second_column{
+    width:350px;
+    height:40px;
+    float:left;
+    margin-top:5px;
+    margin-left:5px;
+    text-align: center;
+}
+/*第三列*/
+.single-song_list_title_third_column{
+    width:230px;
+    height:40px;
+    float:left;
+    margin-top:5px;
+    margin-left:5px;
+    text-align: center;
+}
+/*第四列*/
+.single-song_list_title_fourth_column{
+    width:300px;
+    height:40px;
+    float:left;
+    margin-top:5px;
+    margin-left:5px;
+    text-align: center;
+}
+/*歌手列表*/
+.single-song_list{
+    width:1200px;
+    height:50px;
+    list-style-type: none;
+}
+/*第一列*/
+.single-song_list_first_column{
+    width:300px;
+    height:40px;
+    float:left;
+    padding-left:5px;
+}
+/*第二列*/
+.single-song_list_second_column{
+    width:350px;
+    height:40px;
+    float:left;
+    margin-left:5px;
+    text-align: center;
+}
+/*第三列*/
+.single-song_list_third_column{
+    width:230px;
+    height:40px;
+    float:left;
+    margin-left:5px;
+    text-align: center;
+}
+/*第四列*/
+.single-song_list_fourth_column{
+    width:300px;
+    height:40px;
+    float:left;
+    margin-left:5px;
+    text-align: center;
+}
+/*播放按钮*/
+.single-song_play{
+    float:left;
+    margin-left:115px;
+    font-size:20px;
+}
+/*添加按钮*/
+.single-song_addTOMySongSheety{
+    float:left;
+    margin-left:15px;
+    font-size:20px;
+}
+/*下载按钮*/
+.single-song_downLoad{
+    float:left;
+    margin-left:15px;
+    font-size:20px;
+}
+
+/*播放和下载图标*/
+a .icon-icon-test{
+    font-size:35px;
+}
+a .icon-download{
+    font-size:30px ;
+}

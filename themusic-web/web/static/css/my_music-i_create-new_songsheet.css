@@ -1,0 +1,42 @@
+*{
+    margin: 0px;
+    padding:0px;
+}
+#new_songsheet-container{
+    width:520px;
+    height:200px;
+    position:absolute;
+}
+#new_songsheet-div{
+    position: relative;
+    top:55px;
+    left:55px;
+    font-size:20px;
+}
+#newSongSheetName{
+    width:320px;
+    height:35px;
+    position: relative;
+    top:28px;
+    left:140px;
+    font-size:20px;
+}
+#btn_cancel{
+    width:120px;
+    height:40px;
+    position: relative;
+    top:100px;
+    left:30px;
+}
+#btn_newSongSheet{
+    width:120px;
+    height:40px;
+    position: relative;
+    top:60px;
+    left:200px;
+}
+
+/*取消水平滚动条*/
+.layui-layer-page .layui-layer-content{
+    overflow:hidden !important;
+}

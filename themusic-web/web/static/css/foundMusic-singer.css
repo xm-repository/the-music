@@ -1,0 +1,103 @@
+
+*{
+    margin:0px;
+    padding:0px;
+}
+#singer_container{
+    position:absolute;
+}
+#singer_background_list>li{
+    width:149px;
+    height:140px;
+    float:left;
+    list-style-type: none;
+}
+#singer_background_list img{
+    width: 150px;
+    height: 140px;
+    filter:brightness(30%);
+}
+/*姓名导航栏*/
+#singer_navigation_name{
+    clear:both;
+    width:1200px;
+    height:60px;
+    padding-top:40px;
+}
+#singer_navigation_name>li{
+    width:40px;
+    height:20px;
+    float:left;
+    margin-left:4px;
+    list-style-type: none;
+    text-align:center;
+}
+/*地区导航栏*/
+#singer_navigation_area{
+    clear:both;
+    width:1200px;
+    height:60px;
+    padding-top:40px;
+}
+#singer_navigation_area>li{
+    width:45px;
+    height:20px;
+    float:left;
+    list-style-type: none;
+    margin-left:10px;
+    text-align:center;
+}
+/*性别导航栏*/
+#singer_navigation_gender{
+    clear:both;
+    width:1200px;
+    height:60px;
+    padding-top:40px;
+}
+#singer_navigation_gender>li{
+    width:50px;
+    height:20px;
+    float:left;
+    list-style-type: none;
+    margin-left:10px;
+    text-align:center;
+}
+/*超链接*/
+a:link{
+    text-decoration: none;
+    color:black;
+}
+a:hover{
+    color:green;
+    text-decoration: none !important;
+}
+a:visited{
+    text-decoration: none;
+}
+/*歌手列表*/
+#singer_list_ul{
+    width:1200px;
+    list-style-type:none;
+    margin-top:10px;
+}
+#singer_list_ul>li{
+    width:210px;
+    height:210px;
+    float:left;
+    margin-left:30px;
+    margin-top:20px;
+    text-align: center;
+}
+#singer_list_ul img{
+    width:150px;
+    height:150px;
+    border-radius: 75px;
+    margin-top:10px;
+}
+#singer_list_ul img:hover{
+    cursor:pointer;
+}
+#singer_list_ul a{
+    display:inline-block;
+    margin-top:10px;
+}

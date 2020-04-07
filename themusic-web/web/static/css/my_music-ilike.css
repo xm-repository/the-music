@@ -1,0 +1,30 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+#my_music-ilike-navigationbar{
+    list-style-type:none;
+    margin-top:20px;
+    height:50px;
+}
+#my_music-ilike-navigationbar li{
+    width:50px;
+    height:28px;
+    float:left;
+    font-size:18px;
+    margin-left:50px;
+    text-align: center;
+}
+/*导航栏超链接*/
+#my_music-ilike-navigationbar a:link{
+    color:black;
+    text-decoration: none;
+}
+#my_music-ilike-navigationbar a:hover{
+    color:green;
+    text-decoration: none;
+}
+#my_music-ilike-container{
+    width:100%;
+    clear:both;
+}

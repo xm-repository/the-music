@@ -1,0 +1,37 @@
+*{
+    margin: 0px;
+    padding:0px;
+}
+/*内容*/
+#singer-container{
+    height:500px;
+    width:1200px;
+    margin-left:90px;
+}
+/*播放按钮*/
+.single-song_play{
+    float:left;
+    font-size:20px;
+}
+/*添加按钮*/
+/*
+.single-song_addToMySongSheet{
+    float:left;
+    margin-left:15px;
+    font-size:20px;
+}
+*/
+/*下载按钮*/
+.single-song_downLoad{
+    float:left;
+    margin-left:15px;
+    font-size:20px;
+}
+
+/*播放和下载图标*/
+a .icon-icon-test{
+    font-size:35px;
+}
+a .icon-download{
+    font-size:30px ;
+}

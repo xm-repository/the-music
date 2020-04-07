@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf.dao.SingerDao">
+    <!--歌手页面查询歌手-->
+    <select id="getAllSinger" resultType="com.nf.entity.Singer">
+        select singer_id, singer_name, singer_sex, singer_area, singer_picture, fans
+        from singer
+        where 1=1
+        <!--姓名首字母-->
+        <if test="param3.singerNameInitials != '全部'">
+            and singer_name_initials = #{param3.singerNameInitials}
+        </if>
+        <!--地区-->
+        <if test="param3.singerArea != '全部'">
+            and singer_area = #{param3.singerArea}
+        </if>
+        <!--性别-->
+        <if test="param3.singerSex != '全部'">
+            and singer_sex = #{param3.singerSex}
+        </if>
+        order by singer_id
+    </select>
+    <!--歌手页面查询歌手数量-->
+    <select id="getAllSingerCount" resultType="int">
+        select COUNT(*)
+        from singer
+        where 1=1
+        <!--姓名首字母-->
+        <if test="singerNameInitials != '全部'">
+            and singer_name_initials = #{singerNameInitials}
+        </if>
+        <!--地区-->
+        <if test="singerArea != '全部'">
+            and singer_area = #{singerArea}
+        </if>
+        <!--性别-->
+        <if test="singerSex != '全部'">
+            and singer_sex = #{singerSex}
+        </if>
+        order by singer_id
+    </select>
+    <!--搜索页面通过歌手名字查询歌手-->
+    <select id="getAllSingerByName" resultType="com.nf.entity.Singer">
+        select singer_id, singer_name, singer_sex, singer_picture, fans
+        from singer
+        where 1=1
+        <!--歌手名字-->
+        <if test="param3 !=null">
+            and singer_name like '%' #{param3} '%'
+        </if>
+        order by singer_id
+    </select>
+    <!--根据歌手id查询歌手基本信息-->
+    <select id="getSingerBySingerId" resultType="com.nf.entity.Singer">
+        select singer_id, singer_name, singer_sex, singer_area, singer_picture, fans, singer_name_initials, singer_birth, singer_country, singer_height, singer_weight, blood_type, constellation, synopsis
+        from singer
+        where singer_id =#{singerId}
+    </select>
+    <!--查询歌手专辑数量-->
+    <select id="getAlbumNumsBySingerId" resultType="int">
+        select COUNT(*)
+        from album
+        where singer_id =#{singerId}
+    </select>
+    <!--查询歌手单曲数量-->
+    <select id="getSongNumsBySingerId" resultType="int">
+        select COUNT(*)
+        from song
+        where singer_id =#{singerId}
+    </select>
+    <!--查询歌手MV数量-->
+    <select id="getMVNumsBySingerId" resultType="int">
+        select COUNT(*)
+        from singer A inner join song B on B.singer_id=A.singer_id
+                      inner join mv C on C.song_id=B.song_id
+        where A.singer_id =#{singerId}
+    </select>
+    <!--根据id查询名字-->
+    <select id="getSingerIdBySingerName" resultType="int">
+        select singer_id
+        from singer
+        where singer_name = #{singName}
+    </select>
+
+    <!--管理员部分-->
+    <!--查询所有歌手数量-->
+    <select id="getAllSingersCount" resultType="int">
+        select COUNT(*)
+        from singer
+    </select>
+    <!--分页查询歌手-->
+    <select id="getAllSingers" resultType="com.nf.entity.Singer">
+        select singer_id, singer_name, singer_sex, singer_area, singer_birth, singer_country, singer_height, singer_weight, blood_type, constellation, synopsis, singer_picture, fans, singer_name_initials
+        from singer
+        order by singer_id
+    </select>
+    <!--根据歌手Id删除歌手-->
+    <delete id="deleteSingerBySingerId">
+        delete from singer
+        <choose>
+            <when test="list.size() >0">
+                where singer_id in
+                <foreach collection="list" open="(" close=")" separator="," item="singerId">
+                    ${singerId}
+                </foreach>
+            </when>
+            <otherwise>
+                where false
+            </otherwise>
+        </choose>
+    </delete>
+    <!--修改歌手信息-->
+    <update id="updateSinger">
+        update singer
+        set  singer_name=#{singerName}, singer_sex=#{singerSex}, singer_area=#{singerArea}, singer_birth=#{singerBirth}, singer_country=#{singerCountry}, singer_height=#{singerHeight}, singer_weight=#{singerWeight}, blood_type=#{bloodType}, constellation=#{constellation}, synopsis=#{synopsis}, singer_picture=#{singerPicture}, fans=#{fans}, singer_name_initials=#{singerNameInitials}
+        where singer_id=#{singerId}
+    </update>
+    <!--查询最后一个歌手id-->
+    <select id="getLastSingerId" resultType="int">
+        select singer_id
+        from singer
+        order by singer_id desc
+        limit 0,1
+    </select>
+    <!--添加一个歌手-->
+    <insert id="addSinger">
+        insert into singer(singer_id,singer_name, singer_sex, singer_area, singer_birth, singer_country, singer_height, singer_weight, blood_type, constellation, synopsis, singer_picture, fans, singer_name_initials)
+        values(#{singerId},#{singerName}, #{singerSex}, #{singerArea}, #{singerBirth}, #{singerCountry}, #{singerHeight}, #{singerWeight}, #{bloodType}, #{constellation}, #{synopsis}, #{singerPicture}, #{fans}, #{singerNameInitials})
+    </insert>
+</mapper>

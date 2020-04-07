@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf.dao.MVDao">
+    <!--根据mv名字查询mv-->
+    <select id="getAllMV" resultType="com.nf.entity.MV">
+        select mv_id,mv_picture,mv_src,mv_click,mv_name,D.singer_name
+        from mv A inner join song B on A.song_id=B.song_id
+                  inner join album C on B.album_id = C.album_id
+                  inner join singer D on C.singer_id=D.singer_id
+        where 1=1
+        <if test="param3 !=null">
+            and mv_name like '%' #{param3} '%'
+        </if>
+        order by mv_click desc
+    </select>
+    <!--根据歌手id查询mv-->
+    <select id="getMVBySingerId" resultType="com.nf.entity.MV">
+        select mv_id,mv_picture,mv_src,mv_click,mv_name,C.singer_name
+        from mv A inner join song B on A.song_id=B.song_id
+        inner join singer C on B.singer_id=C.singer_id
+        where C.singer_id =#{param3}
+        order by mv_click desc
+    </select>
+    <!--根据ILikeId查询mv数量-->
+    <select id="getMVCountByILikeId" resultType="int">
+        select COUNT(*)
+        from mv A inner join song B on A.song_id=B.song_id
+        inner join singer C on B.singer_id=C.singer_id
+        inner join mv_ilike_relation D on A.mv_id = D.mv_id
+        where D.ilike_id =#{ilikeId}
+    </select>
+    <!--根据ILikeId查询mv-->
+    <select id="getMVByILikeId" resultType="com.nf.entity.MV">
+        select A.mv_id,mv_picture,mv_src,mv_click,mv_name,C.singer_name
+        from mv A inner join song B on A.song_id=B.song_id
+        inner join singer C on B.singer_id=C.singer_id
+        inner join mv_ilike_relation D on A.mv_id = D.mv_id
+        where D.ilike_id =#{param3}
+        order by mv_click desc
+    </select>
+    <!--根据播放量倒叙查询mv-->
+    <select id="getMvByClickDesc" resultType="com.nf.entity.MV">
+        select mv_id,mv_picture,mv_src,mv_click,mv_name,C.singer_name
+        from mv A inner join song B on A.song_id=B.song_id
+        inner join singer C on B.singer_id=C.singer_id
+        order by mv_click desc
+    </select>
+    <!--根据songId删除MV-->
+    <select id="deleteMvBySongId">
+        delete from mv
+        <choose>
+            <when test="list.size() >0">
+                where song_id in
+                <foreach collection="list" open="(" close=")" separator="," item="songId">
+                    ${songId}
+                </foreach>
+            </when>
+            <otherwise>
+                where false
+            </otherwise>
+        </choose>
+    </select>
+    <!--查询所有mv数量-->
+    <select id="getAllmvsCount" resultType="int">
+        select COUNT(*)
+        from mv
+    </select>
+    <!--分页查询mv-->
+    <select id="getAllMvs" resultType="com.nf.entity.MV">
+        select mv_id,mv_picture,mv_src,mv_click,mv_name,mv_length,C.singer_name,B.song_id,B.song_name
+        from mv A inner join song B on A.song_id=B.song_id
+        inner join singer C on B.singer_id=C.singer_id
+        order by mv_id
+    </select>
+    <!--根据mvId删除Mv-->
+    <delete id="deleteMvByMvId">
+        delete from mv
+        <choose>
+            <when test="list.size() >0">
+                where mv_id in
+                <foreach collection="list" open="(" close=")" separator="," item="mvId">
+                    ${mvId}
+                </foreach>
+            </when>
+            <otherwise>
+                where false
+            </otherwise>
+        </choose>
+    </delete>
+    <!--根据mvid查询mv-->
+    <select id="getMvByMvId" resultType="com.nf.entity.MV">
+        select mv_id,mv_picture,mv_src,mv_click,mv_name,C.singer_name,B.song_id,A.mv_length
+        from mv A inner join song B on A.song_id=B.song_id
+        inner join singer C on B.singer_id=C.singer_id
+        where mv_id =#{mvId}
+    </select>
+    <!--修改mv-->
+    <update id="updateMv">
+        update mv
+        set mv_picture=#{mvPicture},mv_src=#{mvSrc},mv_click=#{mvClick},mv_name=#{mvName},mv_click=#{mvClick},song_id=#{songId},mv_length=#{mvLength}
+        where mv_id =#{mvId}
+    </update>
+    <!--查询最后一首Mvid-->
+    <select id="getLastMvId" resultType="int">
+        select mv_id
+        from mv
+        order by mv_id desc
+        limit 0,1
+    </select>
+    <!--添加mv-->
+    <insert id="addMv">
+        insert into mv(mv_id,mv_name, mv_picture, mv_src, mv_click, song_id, mv_length)
+        values(#{mvId},#{mvName}, #{mvPicture}, #{mvSrc}, #{mvClick}, #{songId}, #{mvLength})
+    </insert>
+    <!--根据ilikeId查询时候收藏mv-->
+    <select id="isLikeMv" resultType="int">
+        select COUNT(*)
+        from mv_ilike_relation
+        where mv_id=#{param1} and ilike_id = #{param2}
+    </select>
+    <!--收藏mv-->
+    <insert id="likeMv">
+        insert into mv_ilike_relation(mv_id, ilike_id)
+        values
+        <foreach collection="param1" item="mvId" separator=",">
+            (#{mvId},#{param2})
+        </foreach>
+    </insert>
+    <!--取消收藏mv-->
+    <delete id="cancelLikeMv">
+        delete from mv_ilike_relation
+        where mv_id in
+        <foreach collection="param1" item="mvId" open="(" close=")" separator=",">
+            #{mvId}
+        </foreach>
+        and ilike_id =#{param2}
+    </delete>
+</mapper>

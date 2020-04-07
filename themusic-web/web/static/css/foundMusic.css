@@ -1,0 +1,87 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+/*容器*/
+#container{
+    width:100%;
+    margin:auto;
+}
+/*标志*/
+#foundMusic_logle{
+    height:66px;
+    width:250px;
+    float:left;
+    margin-left:80px;
+}
+/*导航栏*/
+#navigationbar{
+    float:left;
+    margin-bottom:0px;
+    margin-left:30px;
+}
+#navigationbar>li{
+    width:130px;
+    height:70px;
+    float:left;
+    list-style-type:none;
+    font-size:25px;
+    padding-left:15px;
+    padding-top:18px;
+}
+/*搜索框*/
+#search{
+    height:30px;
+    width:340px;
+    margin-top:18px;
+    font-size:20px;
+    margin-left: 70px;
+}
+/*登陆*/
+#login{
+    width:250px;
+    height:70px;
+    float:right;
+    margin-right:30px;
+}
+/*超链接*/
+a:link{
+    text-decoration: none;
+    color:black;
+}
+a:hover{
+    color:green;
+}
+a:visited{
+    text-decoration: none;
+}
+
+
+/* 导航栏2 */
+#navigationbar2{
+    height:60px;
+    margin-top:23px;
+}
+#navigationbar2>li{
+    width:120px;
+    list-style-type: none;
+    font-size:20px;
+    float:left;
+    text-align: center;
+    margin-top:17px;
+}
+/*内容*/
+#content{
+    width:100%;
+    border-top:1px solid #f2f2f2;
+}
+
+table{
+    border:none !important;
+}
+tr th,tr td{
+    border:none !important;
+}
+thead tr{
+    background-color:#F9F9F9 !important;
+}

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf.dao.SongDao">
+
+    <select id="getAllSong" resultType="com.nf.entity.Song">
+        select @rownum:=@rownum+1 as rownum,D.*
+        from (select song_id, song_name, A.singer_id, A.publish_date, song_click, song_src, song_length ,song_language,picture_src,singer_name,album_name
+              from song A inner join singer B on A.singer_id = B.singer_id
+                          inner join album C on A.album_id = C.album_id
+                          order by song_click desc) D,(select @rownum:=#{param3}) r
+    </select>
+
+    <select id="getSongBySongId" resultType="com.nf.entity.Song">
+        select song_id, song_name, A.singer_id, A.publish_date, song_click, song_src, song_length ,picture_src,song_language,A.album_id,lylic_src,singer_name,album_name
+              from song A inner join singer B on A.singer_id = B.singer_id
+                          inner join album C on A.album_id = C.album_id
+              where A.song_id=#{songId}
+    </select>
+
+    <select id="getSongBySongName" resultType="com.nf.entity.Song">
+        select song_id, song_name, A.singer_id, A.publish_date, song_click, song_src, song_length ,song_language,picture_src,singer_name,album_name
+              from song A inner join singer B on A.singer_id = B.singer_id
+                          inner join album C on A.album_id = C.album_id
+        where 1=1
+        <if test="param3 != null">
+            and A.song_name like '%' #{param3} '%'
+        </if>
+    </select>
+
+    <!--根据歌手id查询歌曲-->
+    <select id="getSongBySingerId" resultType="com.nf.entity.Song">
+        select song_id, song_name, A.singer_id, A.publish_date, song_click, song_src, song_length ,song_language,picture_src,singer_name,album_name
+        from song A inner join singer B on A.singer_id = B.singer_id
+        inner join album C on A.album_id = C.album_id
+        where B.singer_id = #{param3}
+    </select>
+
+    <!--查询歌手的歌曲数量-->
+    <select id="getSingerSongCount" resultType="int">
+        select COUNT(*)
+        from song
+        where singer_id=#{singerId}
+    </select>
+
+    <!--根据我喜欢id查询歌曲-->
+    <select id="getSongCountByILikeId" resultType="int">
+        select COUNT(*)
+        from song A inner join singer B on A.singer_id = B.singer_id
+        inner join album C on A.album_id = C.album_id
+        inner join song_ilike_relation D on A.song_id = D.song_id
+        where D.ilike_id = #{iLikeId}
+    </select>
+
+    <!--根据我喜欢id查询歌曲-->
+    <select id="getSongByILikeId" resultType="com.nf.entity.Song">
+        select A.song_id, song_name, A.singer_id, A.publish_date, song_click, song_src, song_length ,song_language,picture_src,singer_name,album_name
+        from song A inner join singer B on A.singer_id = B.singer_id
+        inner join album C on A.album_id = C.album_id
+        inner join song_ilike_relation D on A.song_id = D.song_id
+        where D.ilike_id = #{param3}
+    </select>
+
+    <!--根据歌曲发布时间降序查询歌曲-->
+    <select id="getSongByPublishDateDesc" resultType="com.nf.entity.Song">
+        select song_id, song_name, A.singer_id, A.publish_date, song_click, song_src, song_length ,song_language,picture_src,singer_name,album_name
+        from song A inner join singer B on A.singer_id = B.singer_id
+        inner join album C on A.album_id = C.album_id
+        order by A.publish_date desc
+    </select>
+
+    <!--收藏歌曲-->
+    <insert id="likeSong">
+        insert into song_ilike_relation(song_id, ilike_id)
+        values
+        <foreach collection="param1" item="songId" separator=",">
+            (#{songId},#{param2})
+        </foreach>
+    </insert>
+    <!--取消收藏歌曲-->
+    <delete id="cancelLikeSong">
+        delete from song_ilike_relation
+        where song_id in
+        <foreach collection="param1" item="songId" open="(" close=")" separator=",">
+            #{songId}
+        </foreach>
+        and ilike_id =#{param2}
+    </delete>
+    <!--根据ilikeId查询是否收藏该歌曲-->
+    <select id="isLikeSong" resultType="int">
+        select COUNT(*)
+        from song_ilike_relation
+        where song_id=#{param1} and ilike_id = #{param2}
+    </select>
+
+
+    <!--管理员部分-->
+    <!--查询所有歌曲数量-->
+    <select id="getAllSongsCount" resultType="int">
+        select COUNT(*)
+        from song
+    </select>
+    <!--管理员查询所有歌曲-->
+    <select id="getAllSongs" resultType="com.nf.entity.Song">
+        select song_id, song_name, A.singer_id, A.publish_date, song_click, song_src, song_length ,song_language,picture_src,singer_name,album_name
+              from song A inner join singer B on A.singer_id = B.singer_id
+                          inner join album C on A.album_id = C.album_id
+        order by A.song_id
+    </select>
+    <!--根据songId删除歌曲-->
+    <delete id="deleteSongBySongId">
+        delete from song
+        <choose>
+            <when test="list.size() >0">
+                where song_id in
+                <foreach collection="list" open="(" close=")" separator="," item="songId">
+                    ${songId}
+                </foreach>
+            </when>
+            <otherwise>
+                where false
+            </otherwise>
+        </choose>
+    </delete>
+    <!--根据songId删除歌单歌曲关系表-->
+    <select id="deleteSheetSongRelationBySongId">
+        delete from sheet_song_realation
+        <choose>
+            <when test="list.size() >0">
+                where song_id in
+                <foreach collection="list" open="(" close=")" separator="," item="songId">
+                    ${songId}
+                </foreach>
+            </when>
+            <otherwise>
+                where false
+            </otherwise>
+        </choose>
+    </select>
+    <!--修改歌曲信息-->
+    <update id="updateSong">
+        update song
+        set song_name=#{songName},singer_id=#{singerId},publish_date=#{publishDate},song_click=#{songClick},song_src=#{songSrc},song_length=#{songLength},picture_src=#{pictureSrc},song_language=#{songLanguage},album_id=#{albumId}
+        where song_id =#{songId}
+    </update>
+    <!--查询最后一首歌曲id-->
+    <select id="getLastSongId" resultType="int">
+        select song_id
+        from song
+        order by song_id desc
+        limit 0,1
+    </select>
+    <!--添加歌曲-->
+    <insert id="addSong">
+        insert into song(song_id,song_name, singer_id, publish_date, song_click, song_src, song_length, picture_src, song_language, album_id)
+        values(#{songId},#{songName},#{singerId},#{publishDate},#{songClick},#{songSrc},#{songLength},#{pictureSrc},#{songLanguage},#{albumId})
+    </insert>
+    <!--根据歌手id查询歌曲Id-->
+    <select id="getSongIdBySingerId" resultType="int">
+        select song_id
+        from song
+        where singer_id in
+        <foreach collection="list" open="(" close=")" separator="," item="singerId">
+            #{singerId}
+        </foreach>
+    </select>
+    <!--根据sheetId查询歌曲-->
+    <select id="getSongBySheetId" resultType="com.nf.entity.Song">
+        select A.song_id, song_name, A.singer_id, A.publish_date, song_click, song_src, song_length ,picture_src,song_language,A.album_id,lylic_src,singer_name,album_name
+              from song A inner join singer B on A.singer_id = B.singer_id
+                          inner join album C on A.album_id = C.album_id
+                          inner join sheet_song_relation D on A.song_id = D.song_id
+              where D.song_sheet_id=#{param3}
+    </select>
+    <!--根据albumId查询歌曲-->
+    <select id="getSongByAlbumId" resultType="com.nf.entity.Song">
+        select A.song_id, song_name, A.singer_id, A.publish_date, song_click, song_src, song_length ,picture_src,song_language,A.album_id,lylic_src,singer_name,album_name
+              from song A inner join singer B on A.singer_id = B.singer_id
+                          inner join album C on A.album_id = C.album_id
+              where C.album_id=#{param3}
+    </select>
+</mapper>

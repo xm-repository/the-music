@@ -1,0 +1,71 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+#songsheet_container{
+
+}
+/*歌单信息*/
+#songsheet_sheet_info{
+    height:320px;
+    background-color:#F9F9F9;
+}
+/*歌单图片*/
+#songsheet_picture{
+    margin-top:40px;
+    margin-left:90px;
+    float:left;
+}
+/*歌曲详情*/
+#songsheet_sheet_info_details{
+    width:600px;
+    height:220px;
+    float:left;
+    margin-left:60px;
+    margin-top:50px;
+}
+/*名字*/
+#songsheet-sheet_info-sheet_name{
+    width:600px;
+    height:30px;
+    margin-top:10px;
+}
+#songsheet-sheet_info-sheet_name i{
+    float:left;
+    margin-top:5px;
+}
+#songsheet-sheet_info-sheet_name a{
+    float:left;
+    padding-top:5px;
+    margin-left:5px;
+    font-weight:bold;
+}
+#songsheet-sheet_info-label_info{
+    width:300px;
+    height:30px;
+    list-style-type:none;
+    display:inline-block;
+    margin-bottom:0px !important;
+    padding-top:5px;
+}
+#songsheet-sheet_info-label_info li{
+    float:left;
+    margin-top:10px;
+    margin-left:10px;
+}
+/*内容*/
+#singer-container{
+    height:500px;
+    width:1200px;
+    margin-left:90px;
+}
+table{
+    border:none !important;
+}
+tr th,tr td{
+    border:none !important;
+}
+
+a{
+    color:black;
+}

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nf.dao.CommentDao">
+    <!--查询热门评论-->
+    <select id="getAllGoodCommentsBySongId" resultMap="commentUserInfoResultMap">
+        select A.scomment_id, song_id, A.user_id, user_name,comment_time,recomment_id,content,scomment_click,B.user_picture
+                from song_comment A inner join user B on A.user_id=B.user_id
+                where song_id = #{param3}
+        order by scomment_click desc
+    </select>
+    <resultMap id="commentUserInfoResultMap" type="com.nf.entity.Comment">
+        <id column="user_name" property="user.userName"></id>
+        <result column="user_picture" property="user.userPicture"></result>
+    </resultMap>
+    <!--查询最新评论-->
+    <select id="getAllRecentlyCommentsBySongId" resultMap="commentUserInfoResultMap">
+        select A.scomment_id, song_id, A.user_id, user_name,comment_time,recomment_id,content,scomment_click,B.user_picture
+                from song_comment A inner join user B on A.user_id=B.user_id
+                where song_id = #{param3}
+        order by comment_time desc
+    </select>
+    <!--判断当前评论是否被当前用户点赞-->
+    <select id="commentIsLikeByUser" resultType="int">
+        select COUNT(*)
+        from like_comment
+        where scomment_id = #{param1.scommentId} and user_id = #{param2}
+    </select>
+    <!--查询被回复的评论的用户名-->
+    <select id="getRecommentUserName" resultType="string">
+        select user_name
+        from user
+        <choose>
+            <when test="recommentId !=null">
+                where user_id = (select user_id from song_comment where scomment_id=#{recommentId})
+            </when>
+            <otherwise>
+                where false
+            </otherwise>
+        </choose>
+    </select>
+    <!--查询一个评论的评论数-->
+    <select id="getReplayCountByCommentId" resultType="int">
+        select COUNT(*) from song_comment
+        where recomment_id=#{param1}
+    </select>
+    <!--添加评论-->
+    <insert id="addComment">
+        <choose>
+            <when test="recommentId !=null">
+                insert into song_comment(song_id,user_id, scomment_click, recomment_id, content, comment_time)
+                values(#{songId},#{userId},0,#{recommentId},#{content},#{commentTime})
+            </when>
+            <otherwise>
+                insert into song_comment(song_id,user_id, scomment_click, content, comment_time)
+                values(#{songId},#{userId},0,#{content},#{commentTime})
+            </otherwise>
+        </choose>
+    </insert>
+    <!--点赞后添加点赞记录-->
+    <insert id="addLikeComment">
+        insert into like_comment(id,user_id, scomment_id)
+        values(#{id},#{userId},#{scommentId})
+    </insert>
+    <!--点赞后点赞数+1-->
+    <update id="addScommentClick">
+        update song_comment
+        set scomment_click = scomment_click+1
+        where scomment_id = #{scommentId}
+    </update>
+    <!--取消点赞后删除点赞记录-->
+    <delete id="dropLikeComment">
+        delete from like_comment
+        where scomment_id =#{scommentId} and user_id=#{userId}
+    </delete>
+    <!--取消点赞后点赞数-1-->
+    <update id="reduceScommentClick">
+        update song_comment
+        set scomment_click = scomment_click-1
+        where scomment_id = #{scommentId}
+    </update>
+
+    <!--根据评论id删除点赞表-->
+    <delete id="deleteLikeCommentByCommentId">
+        delete from like_comment
+        <choose>
+        <!--评论数量不是零-->
+            <when test="list.size() >0">
+            where scomment_id in
+                <foreach collection="list" open="(" close=")" separator="," item="commentId">
+                    ${commentId}
+                </foreach>
+            </when>
+            <!--0评论记录-->
+            <otherwise>
+                where false
+            </otherwise>
+        </choose>
+    </delete>
+    <!--根据歌曲Id查询评论id-->
+    <select id="getCommentIdBySongId" resultType="int">
+        select scomment_id
+        from song_comment
+        where
+        <choose>
+            <when test="list.size() >0">
+                song_id in
+                <foreach collection="list" open="(" close=")" separator="," item="songId">
+                    ${songId}
+                </foreach>
+            </when>
+            <otherwise>
+                false
+            </otherwise>
+        </choose>
+
+    </select>
+    <!--根据歌曲Id删除评论-->
+    <delete id="deleteCommentBySongId">
+        delete from song_comment
+        where
+        <choose>
+            <when test="list.size() >0">
+                song_id in
+                <foreach collection="list" open="(" close=")" separator="," item="songId">
+                    ${songId}
+                </foreach>
+            </when>
+            <otherwise>
+                false
+            </otherwise>
+        </choose>
+    </delete>
+</mapper>

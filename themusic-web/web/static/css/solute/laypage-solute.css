@@ -1,0 +1,6 @@
+/*解决laypage默认大小太小*/
+.layui-laypage a, .layui-laypage span{
+    height:40px;
+    font-size:20px;
+    padding-top:10px !important;
+}

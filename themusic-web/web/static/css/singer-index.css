@@ -1,0 +1,110 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+/*容器*/
+#container{
+    width:100%;
+}
+/*标志*/
+#foundMusic_logle{
+    height:66px;
+    width:250px;
+    float:left;
+    margin-left:50px;
+}
+/*导航栏*/
+#navigationbar{
+    float:left;
+    margin-bottom:0px;
+}
+#navigationbar>li{
+    width:150px;
+    float:left;
+    list-style-type:none;
+    font-size:25px;
+    padding-left:40px;
+    padding-top:13px;
+    padding-bottom:19px;
+}
+/*搜索框*/
+#search{
+    height:30px;
+    width:340px;
+    margin-top:18px;
+    font-size:20px;
+    margin-left:20px;
+}
+/*登陆*/
+#login{
+    width:250px;
+    height:70px;
+    float:right;
+    margin-right:30px;
+}
+
+/*超链接*/
+a{
+    color:black;
+}
+a:hover{
+    color:green;
+    text-decoration: none;
+    cursor:pointer;
+}
+a:focus{
+    color:green;
+    text-decoration:none ;
+}
+hr{
+    margin-top:0px;
+    margin-bottom:0px;
+}
+/*内容容器*/
+#content_container{
+    width:100%;
+    background-color:#F5F5F5;
+    position:absolute;
+    top:70px;
+}
+/*头部*/
+#content_head{
+    width:1200px;
+    height:350px;
+    margin-left:90px;
+}
+/*歌手头像*/
+#singer_headpicture{
+    width:250px;
+    height:250px;
+    border-radius:125px;
+    margin-top:40px;
+    margin-left:20px;
+}
+/*歌手信息*/
+#singer_info{
+    width:800px;
+    height:350px;
+    float:right;
+    margin-right:80px;
+}
+/*歌曲和mv*/
+#song_mv_ul{
+    width:100%;
+    height:35px;
+    margin-top:20px;
+    list-style-type: none;
+}
+#song_mv_ul li{
+    width:130px;
+    float:left;
+    height:35px;
+    font-size:25px;
+}
+/*内容*/
+/*内容*/
+#content{
+    height:500px;
+    width:1200px;
+    margin-left:50px;
+}

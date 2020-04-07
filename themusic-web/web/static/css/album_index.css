@@ -1,0 +1,50 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+/*专辑信息*/
+#album_info{
+    height:320px;
+    background-color:#F9F9F9;
+}
+/*专辑图片*/
+#album_picture{
+    margin-top:40px;
+    margin-left:90px;
+    float:left;
+}
+/*歌曲详情*/
+#album_info_details{
+    width:600px;
+    height:220px;
+    float:left;
+    margin-left:60px;
+    margin-top:50px;
+}
+/*名字*/
+#album_info-album_name{
+    width:600px;
+    height:30px;
+    margin-top:10px;
+}
+#album_info-album_name i{
+    float:left;
+    margin-top:5px;
+}
+#album_info-album_name a{
+    float:left;
+    padding-top:5px;
+    margin-left:5px;
+    font-weight:bold;
+}
+
+table{
+    border:none !important;
+}
+tr th,tr td{
+    border:none !important;
+}
+
+a{
+    color:black;
+}

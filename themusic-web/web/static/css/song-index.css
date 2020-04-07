@@ -1,0 +1,171 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+#song-index_container{
+    height:2000px;
+    margin:auto;
+}
+/*歌曲信息*/
+#song-play_song_info{
+    height:320px;
+    margin:auto;
+    background-color:#F9F9F9;
+}
+/*歌曲图片*/
+#song-play_song_picture{
+    margin-top:40px;
+    margin-left:120px;
+    float:left;
+}
+/*歌曲详情*/
+#song-play_song_info_details{
+    width:600px;
+    height:220px;
+    float:left;
+    margin-left:60px;
+    margin-top:50px;
+}
+/*名字*/
+#song-play-song_info-singer_name{
+    width:600px;
+    height:30px;
+    margin-top:10px;
+}
+#song-play-song_info-singer_name i{
+    float:left;
+    margin-top:5px;
+}
+#song-play-song_info-singer_name a{
+    float:left;
+    padding-top:5px;
+    margin-left:5px;
+    font-weight:bold;
+}
+#song-play-song_info-singer_data{
+    width:600px;
+    height:100px;
+    list-style-type:none;
+    margin-top:10px;
+}
+#song-play-song_info-singer_data li{
+    width:280px;
+    float:left;
+    margin-top:10px;
+}
+/*歌词*/
+#song-play_lylic{
+    width:1200px;
+    margin:auto;
+}
+#lylic-content{
+    width:1000px;
+    margin-top:30px;
+    margin-left:50px;
+}
+#lylic-content p{
+    margin-top:10px;
+}
+#showAllLylic{
+    margin-left:40px;
+}
+#showAllLylic:hover{
+    cursor:pointer;
+}
+/*播放器*/
+#song-play_player{
+    width:600px;
+    float:left;
+    margin-left:100px;
+}
+
+/*歌曲控制区*/
+#song-play_player-control{
+    width:400px;
+    height:58px;
+    display:inline-block;
+}
+/*喜欢（取消）按钮*/
+#likeOrCancelLike:hover{
+    cursor:pointer;
+}
+/*喜欢时显示红色*/
+.icon-like1{
+    color:red;
+}
+/*评论按钮*/
+#goToComment:hover{
+    cursor:pointer;
+}
+/*评论区*/
+#comment_container{
+    width:1200px;
+    margin:auto;
+}
+/*我的评论*/
+#my-comment{
+    width:800px;
+    height:300px;
+    margin-left:45px;
+    margin-top:20px;
+}
+#my-comment_content{
+    width:800px;
+    height:200px;
+    font-size:15px;
+    background-color:#F7F7F7;
+}
+/*精彩评论区*/
+#good-comment_container{
+    margin-left:45px;
+}
+/*用户评论*/
+.others-comment_container{
+    width:800px;
+    border:0.5px solid #EDEDED;
+    border-left:0px;
+    border-right:0px;
+}
+.others-comment_container>img{
+    width:44px;
+    height:44px;
+    border-radius:22px;
+    margin-top:20px;
+    margin-left:10px;
+}
+.others-comment_info_container{
+    width:720px;
+    float:right;
+}
+.others-comment_content{
+    margin-top:10px;
+}
+.others-comment_click-good_comment{
+    display:inline-block;
+    float:right;
+    margin-right:20px;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+/*最新评论*/
+#recently-comment_container{
+    width:800px;
+    margin-left:45px;
+}
+/*点赞后显示红色*/
+.icon-like-b{
+    color:red;
+}
+
+/*超链接*/
+a:link{
+    text-decoration: none;
+    color:black;
+}
+a:hover{
+    color:green;
+    text-decoration:none;
+}
+a:visited{
+    text-decoration: none;
+}

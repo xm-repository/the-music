@@ -1,0 +1,114 @@
+*{
+    margin: 0px;
+    padding:0px;
+}
+#login-container{
+    width:450px;
+    height:400px;
+    margin:auto;
+    padding-top:50px;
+    position:relative;
+
+}
+#login-container h1{
+    font-weight:normal;
+    text-align: center;
+}
+/*用户名*/
+/*标题*/
+#username_title{
+    margin-left:50px;
+    margin-top:40px;
+}
+/*输入框*/
+#username{
+    width:350px;
+    height:30px;
+    margin-left:50px;
+    margin-top:10px;
+    border:0px;
+    outline:none;
+    border-bottom:2px solid grey;
+    padding-left:30px;
+}
+/*用户名背景图片*/
+#login-container .icon-user_name{
+    position:absolute;
+    left:55px;
+    top:155px;
+    width:30px;
+    height:30px;
+    font-weight: bold;
+}
+/*密码*/
+/*标题*/
+#password_title{
+    margin-left:50px;
+    margin-top:20px;
+}
+/*输入框*/
+#password{
+    width:350px;
+    height:30px;
+    margin-left:50px;
+    margin-top:10px;
+    border:0px;
+    outline:none;
+    border-bottom:2px solid grey;
+    padding-left:30px;
+}
+/*密码背景图*/
+.icon-password{
+    width:30px;
+    height:30px;
+    position:absolute;
+    left:55px;
+    top:235px;
+    font-weight:bold;
+}
+/*登录按钮特效*/
+#login-button{
+    position: relative;
+    text-align: center;
+    background-image: linear-gradient(to right,#09D3DF,#7B6FEE,#F803FF);
+    cursor: pointer;
+    width:350px;
+    height:40px;
+    margin-top:30px;
+    margin-left:50px;
+    border-radius:50px;
+    border:none;
+    outline: none;
+}
+#login-button:after,#login-button:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-image: linear-gradient(to right,#09D3DF,#7B6FEE,#F803FF);
+    z-index:-2;
+    border-radius:50px;
+    border:none;
+    outline: none;
+}
+#login-button:hover{
+    z-index:1;
+    background:transparent;
+    border-radius:50px;
+    border:none;
+    outline: none;
+}
+#login-button:before {
+    transition: 0.03s;
+    background-image: linear-gradient(to right,#F803FF,#7B6FEE,#09D3DF);
+    z-index:-1;
+}
+#login-button:hover:after,#login-button:hover:before {
+    width: 100%;
+    border-radius:50px;
+    border:none;
+    outline: none;
+}
+/*登录按钮特效结束*/
