@@ -70,6 +70,16 @@
         order by A.publish_date desc
     </select>
 
+    <!--歌曲播放次数+1-->
+    <update id="addSongClickOneBySongId">
+        update song
+        set song_click = song_click+1
+        where song_id in
+        <foreach collection="list" open="(" close=")" separator="," item="songId">
+            #{songId}
+        </foreach>
+    </update>
+
     <!--收藏歌曲-->
     <insert id="likeSong">
         insert into song_ilike_relation(song_id, ilike_id)

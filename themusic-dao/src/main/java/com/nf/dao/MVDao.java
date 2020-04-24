@@ -32,6 +32,9 @@ public interface MVDao {
     //分页查询MV
     List<MV> getAllMvs(@Param("pageNum")int pageNum,@Param("pageSize")int pageSize);
 
+    //mv播放次数+1
+    void addMvClickOneByMvId(Integer mvId);
+
     //根据id删除mv
     void deleteMvByMvId(List<Integer> mvIds);
 

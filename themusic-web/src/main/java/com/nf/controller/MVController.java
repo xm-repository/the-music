@@ -56,6 +56,8 @@ public class MVController {
         modelAndView.setViewName("user/mv-play");
         //查询mv信息
         MV mv = mvService.getMvByMvId(mvId);
+        //mv播放次数+1
+        mvService.addMvClickOneByMvId(mvId);
         modelAndView.addObject("mv",mv);
         return modelAndView;
     }

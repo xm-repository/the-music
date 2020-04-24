@@ -12,9 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-//@CrossOrigin(value = {"http://127.0.0.1:8848"},
-//        methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.OPTIONS},
-//        allowCredentials = "false")
+@CrossOrigin(value = {"http://127.0.0.1:8848"},
+        methods = {RequestMethod.GET,RequestMethod.POST,RequestMethod.OPTIONS},
+        allowCredentials = "false")
 @RequestMapping("/registe")
 public class RegisteController {
 
@@ -56,6 +56,8 @@ public class RegisteController {
                 user.setUserPhone(loginDTO.getPhone());
                 //默认选择一张头像
                 user.setUserPicture("default.jpg");
+                //默认男
+                user.setUserSex("男");
                 userService.addUser(user);
                 //添加登陆信息
                 Login login = new Login();

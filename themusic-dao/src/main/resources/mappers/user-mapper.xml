@@ -12,8 +12,8 @@
     </select>
     <!--添加一个用户-->
     <select id="addUser">
-        insert into user(user_phone,user_picture)
-        values(#{userPhone},#{userPicture})
+        insert into user(user_phone,user_sex,user_picture)
+        values(#{userPhone},#{userSex},#{userPicture})
     </select>
     <!--查询最后一个用户id-->
     <select id="selectLastUserId" resultType="int">

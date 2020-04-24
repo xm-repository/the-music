@@ -11,8 +11,8 @@
                         <!--播放按钮特效-->
                         <i class="mv_play-img iconfont icon-icon-test"></i>
                     </div>
-                    <h4 style="font-weight: normal;margin-top:10px;">${mv.mvName}</h4>
-                    <p style="font-size:10px;margin-top:5px;color:gray;">${mv.singerName}</p>
+                    <h4 style="font-weight: normal;margin-top:10px;"><a href="/song/index?songId=${mv.songId}" target="_blank">${mv.mvName}</a></h4>
+                    <p style="font-size:10px;margin-top:5px;color:gray;"><a href="/singer/singerIndex?singerId=${mv.singerId}" target="_blank">${mv.singerName}</a></p>
                     <p><span>▶</span><span>${mv.mvClick}</span></p>
                     <a title="删除" style="position:absolute;left:250px;top:190px;"><i id="cancelLikeMv" class="iconfont icon-icon7" style="font-size:20px;"></i></a>
                 </li>
@@ -24,8 +24,8 @@
                         <!--播放按钮特效-->
                         <i class="mv_play-img iconfont icon-icon-test"></i>
                     </div>
-                    <h4 style="font-weight: normal;margin-top:10px;">${mv.mvName}</h4>
-                    <p style="font-size:10px;margin-top:5px;color:gray;">${mv.singerName}</p>
+                    <h4 style="font-weight: normal;margin-top:10px;"><a href="/song/index?songId=${mv.songId}" target="_blank">${mv.mvName}</a></h4>
+                    <p style="font-size:10px;margin-top:5px;color:gray;"><a href="/singer/singerIndex?singerId=${mv.singerId}" target="_blank">${mv.singerName}</a></p>
                     <p><span>▶</span><span>${mv.mvClick}</span></p>
                     <a title="删除" style="position:absolute;left:250px;top:190px;"><i id="cancelLikeMv" class="iconfont icon-icon7" style="font-size:20px;"></i></a>
                 </li>

@@ -23,12 +23,12 @@
                 <form>
                     <!--用户名-->
                     <div class="form_text_ipt">
-                        <input id="loginName" name="username" type="text" placeholder="用户名">
+                        <input id="loginName" name="username" type="text" placeholder="用户名(长度<=10)" maxlength="10">
                     </div>
                     <div class="ececk_warning"><span>用户名不能为空</span></div>
                     <!--密码-->
                     <div class="form_text_ipt">
-                        <input id="password" name="password" type="password" placeholder="密码">
+                        <input id="password" name="password" type="password" placeholder="密码(长度<=16)" maxlength="16">
                     </div>
                     <div class="ececk_warning"><span>密码不能为空</span></div>
                     <!--手机号-->

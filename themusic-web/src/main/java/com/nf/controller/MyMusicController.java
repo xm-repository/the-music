@@ -225,7 +225,7 @@ public class MyMusicController {
         Login login = (Login)req.getSession().getAttribute("login");
         //查询出ilikeId
         Integer ilikeId = iLikeService.getILikeByUserId(login.getUserId()).getUserId();
-        //查询专辑
+        //查询Mv
         List<MV> mvs = mvService.getMVByILikeId(pageNum,pageSize,ilikeId);
         PageInfo<Album> pageInfo = new PageInfo(mvs);
         modelAndView.setViewName("user/my_music-ilike-mv-list");

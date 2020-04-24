@@ -46,6 +46,14 @@
         order by sheet_id
     </select>
 
+    <!--通过userId查询我所有创建的歌单歌单-->
+    <select id="getAllSongSheetByUserId" resultType="com.nf.entity.SongSheet">
+        select sheet_id, sheet_name, user_id, language, style, mood
+        from song_sheet
+        where user_id = #{param3}
+        order by sheet_id
+    </select>
+
     <!--创建一个歌单-->
     <insert id="addSongSheet">
         insert into song_sheet(sheet_name,user_id)

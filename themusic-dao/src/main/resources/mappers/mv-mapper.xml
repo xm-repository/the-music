@@ -5,7 +5,7 @@
 <mapper namespace="com.nf.dao.MVDao">
     <!--根据mv名字查询mv-->
     <select id="getAllMV" resultType="com.nf.entity.MV">
-        select mv_id,mv_picture,mv_src,mv_click,mv_name,D.singer_name
+        select A.mv_id,mv_picture,mv_src,mv_click,mv_name,mv_length,D.singer_name,D.singer_id,B.song_id,B.song_name
         from mv A inner join song B on A.song_id=B.song_id
                   inner join album C on B.album_id = C.album_id
                   inner join singer D on C.singer_id=D.singer_id
@@ -17,7 +17,7 @@
     </select>
     <!--根据歌手id查询mv-->
     <select id="getMVBySingerId" resultType="com.nf.entity.MV">
-        select mv_id,mv_picture,mv_src,mv_click,mv_name,C.singer_name
+        select A.mv_id,mv_picture,mv_src,mv_click,mv_name,mv_length,C.singer_name,C.singer_id,B.song_id,B.song_name
         from mv A inner join song B on A.song_id=B.song_id
         inner join singer C on B.singer_id=C.singer_id
         where C.singer_id =#{param3}
@@ -33,7 +33,7 @@
     </select>
     <!--根据ILikeId查询mv-->
     <select id="getMVByILikeId" resultType="com.nf.entity.MV">
-        select A.mv_id,mv_picture,mv_src,mv_click,mv_name,C.singer_name
+        select A.mv_id,mv_picture,mv_src,mv_click,mv_name,mv_length,C.singer_name,C.singer_id,B.song_id,B.song_name
         from mv A inner join song B on A.song_id=B.song_id
         inner join singer C on B.singer_id=C.singer_id
         inner join mv_ilike_relation D on A.mv_id = D.mv_id
@@ -42,7 +42,7 @@
     </select>
     <!--根据播放量倒叙查询mv-->
     <select id="getMvByClickDesc" resultType="com.nf.entity.MV">
-        select mv_id,mv_picture,mv_src,mv_click,mv_name,C.singer_name
+        select mv_id,mv_picture,mv_src,mv_click,mv_name,mv_length,C.singer_name,C.singer_id,B.song_id,B.song_name
         from mv A inner join song B on A.song_id=B.song_id
         inner join singer C on B.singer_id=C.singer_id
         order by mv_click desc
@@ -69,11 +69,17 @@
     </select>
     <!--分页查询mv-->
     <select id="getAllMvs" resultType="com.nf.entity.MV">
-        select mv_id,mv_picture,mv_src,mv_click,mv_name,mv_length,C.singer_name,B.song_id,B.song_name
+        select mv_id,mv_picture,mv_src,mv_click,mv_name,mv_length,C.singer_name,C.singer_id,B.song_id,B.song_name
         from mv A inner join song B on A.song_id=B.song_id
         inner join singer C on B.singer_id=C.singer_id
         order by mv_id
     </select>
+    <!--mv播放次数+1-->
+    <update id="addMvClickOneByMvId">
+        update mv
+        set mv_click = mv_click+1
+        where mv_id = #{mvId}
+    </update>
     <!--根据mvId删除Mv-->
     <delete id="deleteMvByMvId">
         delete from mv

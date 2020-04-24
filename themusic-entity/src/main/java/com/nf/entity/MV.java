@@ -15,6 +15,8 @@ public class MV {
     //歌曲名字
     private String songName;
 
+    //歌手id
+    private Integer singerId;
     //歌手名字
     private String singerName;
 }

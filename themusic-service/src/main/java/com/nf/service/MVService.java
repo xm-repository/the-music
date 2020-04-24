@@ -81,4 +81,8 @@ public class MVService {
             }
         }
     }
+    //mv播放次数+1
+    public void addMvClickOneByMvId(Integer mvId){
+        mvDao.addMvClickOneByMvId(mvId);
+    }
 }

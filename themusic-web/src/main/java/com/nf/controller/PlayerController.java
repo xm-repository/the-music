@@ -51,6 +51,8 @@ public class PlayerController {
             Song song = songService.getSongBySongId(songId);
             songPlayer.getSongList().add(song);
         }
+        //播放次数+1
+        songService.addSongClickOneBySongId(songIds);
         req.getSession().setAttribute("songPlayer",songPlayer);
         ResponseDTO responseDTO = new ResponseDTO("200","添加歌曲成功!",null);
         return responseDTO;
@@ -93,15 +95,15 @@ public class PlayerController {
         return new ResponseDTO("200","ok",null);
     }
 
-//    //获取登录用户的所有歌单信息
-//    @GetMapping("/mySongSheet")
-//    @ResponseBody
-//    public ResponseDTO mySongSheet(HttpServletRequest req){
-//        //先获取登录用户的userId
-//        Login login = (Login)req.getSession().getAttribute("login");
-//        Integer userId = login.getUserId();
-//        //根据userId查询歌单
-//        List<SongSheet> songSheets = songSheetService.getSongSheetByUserId(userId);
-//        return new ResponseDTO("200","ok",songSheets);
-//    }
+    //获取登录用户的所有歌单信息
+    @GetMapping("/mySongSheet")
+    @ResponseBody
+    public ResponseDTO mySongSheet(HttpServletRequest req){
+        //先获取登录用户的userId
+        Login login = (Login)req.getSession().getAttribute("login");
+        Integer userId = login.getUserId();
+        //根据userId查询歌单
+        List<SongSheet> songSheets = songSheetService.getAllSongSheetByUserId(userId);
+        return new ResponseDTO("200","ok",songSheets);
+    }
 }

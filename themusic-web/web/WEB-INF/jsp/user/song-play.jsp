@@ -567,7 +567,7 @@
                                 contentType:"application/json"
                             }).done(function(resp){
                                 if(resp.code="200"){
-                                    layer.msg('操作成功',{time:1000});
+                                    layer.msg('操作成功',{icon:1,time:1000});
                                     //重新显示是否收藏歌曲
                                     //先获取歌曲id
                                     var songEq = $(audioFn.audio).attr("songEq");
@@ -728,6 +728,11 @@
                                         }).done(function(resp){
                                             if(resp.code=="200"){
                                                 layer.msg("操作成功!",{icon:1,time:1000});
+                                                //重新显示是否收藏歌曲
+                                                //先获取歌曲id
+                                                var songEq = $(audioFn.audio).attr("songEq");
+                                                var songId = $($("#play-song_list").children()[songEq]).attr("songId");
+                                                likeOrCnacelLikeChange(songId);
                                             }
                                         }).fail(function(){
                                             alert("发送请求失败");

@@ -35,9 +35,17 @@ public class SongSheetService {
         return songSheetDao.getSongSheetCountByUserId(userId);
     }
 
-    //根据据userId查询歌单
+    //根据据userId分页查询我创建的歌单
     public List<SongSheet> getSongSheetByUserId(Integer pageNum,Integer pageSize,Integer userId){
         List<SongSheet> songSheets = songSheetDao.getSongSheetByUserId(pageNum, pageSize, userId);
+        for (SongSheet songSheet : songSheets) {
+            songSheet.setSongNums(songSheetDao.getSongNumsBySheetId(songSheet.getSheetId()));
+        }
+        return songSheets;
+    }
+    //根据据userId查询所有我创建的歌单
+    public List<SongSheet> getAllSongSheetByUserId(Integer userId){
+        List<SongSheet> songSheets = songSheetDao.getAllSongSheetByUserId(userId);
         for (SongSheet songSheet : songSheets) {
             songSheet.setSongNums(songSheetDao.getSongNumsBySheetId(songSheet.getSheetId()));
         }

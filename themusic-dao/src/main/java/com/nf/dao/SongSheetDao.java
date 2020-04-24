@@ -14,8 +14,10 @@ public interface SongSheetDao {
     Integer getSongNumsBySheetId(Integer sheetId);
     //根据据userId查询歌单数量
     Integer getSongSheetCountByUserId(Integer userId);
-    //根据据userId查询歌单
+    //根据据userId分页查询我创建的歌单
     List<SongSheet> getSongSheetByUserId(@Param("pageNum") Integer pageNum,@Param("pageSize") Integer pageSize,Integer userId);
+    //根据据userId查询所有我创建的歌单
+    List<SongSheet> getAllSongSheetByUserId(Integer userId);
 
     //创建一个歌单
     void addSongSheet(SongSheet songSheet);

@@ -827,7 +827,6 @@
         //新建歌单
         function newSongSheet() {
             $("#newSongSheet").on("click", function() {
-                console.log("newSongSheet");
                 //$("tbody").append('<tr style="height:50px;"><td>李四的歌单</td><td>43首</td><td><a href="#" style="color:"><i title="删除" class="iconfont icon-icon7" style="font-size:25px;"></i></a></td></tr>');
                 //显示新建歌单页面
                 $.ajax({
@@ -881,18 +880,21 @@
         function dropSongSheet() {
             $("tbody").on("click", ".icon-icon7", function(e) {
                 e.preventDefault();
-                var sheetId = $(e.target).parents("tr").attr("sheetId");
-                $.ajax({
-                    method:"POST",
-                    url:"/myMusic/deleteSongSheet",
-                    data:"songSheetId="+sheetId
-                }).done(function(resp){
-                    if(resp.code=="200"){
-                        alert("删除成功!");
-                        loadMyCreateSongSheetList();
-                    }
-                }).fail(function(){
-                    alert("删除失败!");
+                layer.confirm('确定删除吗?', {icon: 3, title:'提示'}, function(index){
+                    var sheetId = $(e.target).parents("tr").attr("sheetId");
+                    $.ajax({
+                        method:"POST",
+                        url:"/myMusic/deleteSongSheet",
+                        data:"songSheetId="+sheetId
+                    }).done(function(resp){
+                        if(resp.code=="200"){
+                            layer.close(index);
+                            loadMyCreateSongSheetList();
+                            layer.msg('删除成功！',{time:500});
+                        }
+                    }).fail(function(){
+                        alert("删除失败!");
+                    })
                 })
             })
         }

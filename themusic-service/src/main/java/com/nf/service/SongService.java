@@ -138,4 +138,8 @@ public class SongService {
     public List<Song> getSongByAlbumId(@Param("pageNum")Integer pageNum, @Param("pageSize") Integer pageSize,Integer albumId){
         return songDao.getSongByAlbumId(pageNum, pageSize, albumId);
     }
+    //歌曲播放次数+1
+    public void addSongClickOneBySongId(List<Integer> songIds){
+        songDao.addSongClickOneBySongId(songIds);
+    }
 }

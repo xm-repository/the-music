@@ -28,6 +28,8 @@ public interface SongDao {
     //根据歌曲发布时间降序查询歌曲
     List<Song> getSongByPublishDateDesc(@Param("pageNum")int pageNum, @Param("pageSize") int pageSize);
 
+    //歌曲播放次数+1
+    void addSongClickOneBySongId(List<Integer> songIds);
     //收藏歌曲
     void likeSong(List<Integer> songIds,Integer ilikeId);
     //取消收藏歌曲
