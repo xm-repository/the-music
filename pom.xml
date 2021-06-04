@@ -32,7 +32,7 @@
         <pagehelper.version>5.1.10</pagehelper.version>
         <spring.version>5.2.0.RELEASE</spring.version>
         <mybatis.spring.version>2.0.2</mybatis.spring.version>
-        <hibernate.validator.version>6.1.0.Final</hibernate.validator.version>
+        <hibernate.validator.version>6.1.5.Final</hibernate.validator.version>
         <lombok.version>1.18.10</lombok.version>
         <jackson.version>2.10.1</jackson.version>
         <servlet.version>3.1.0</servlet.version>
